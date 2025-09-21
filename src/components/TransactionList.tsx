@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useMemo, useCallback } from 'react';
 import { Trash2, Receipt, Download, Upload } from 'lucide-react';
 import { useFinance } from '../context/FinanceContext';
 import TransactionItem from './TransactionItem';
@@ -6,7 +6,7 @@ import { exportData, importData } from '../utils/storage';
 import { useAccessibility } from '../hooks/useAccessibility';
 import './TransactionList.css';
 
-const TransactionList = () => {
+const TransactionList = memo(() => {
   const { 
     filteredTransactions, 
     clearAllTransactions, 
@@ -16,14 +16,14 @@ const TransactionList = () => {
   } = useFinance();
   const { announce } = useAccessibility();
 
-  const handleClearAll = () => {
+  const handleClearAll = useCallback(() => {
     if (window.confirm('¿Estás seguro de que quieres eliminar todas las transacciones? Esta acción no se puede deshacer.')) {
       clearAllTransactions();
       announce('Todas las transacciones han sido eliminadas');
     }
-  };
+  }, [clearAllTransactions, announce]);
 
-  const handleExport = async () => {
+  const handleExport = useCallback(async () => {
     try {
       const success = exportData(transactions);
       if (success) {
@@ -34,9 +34,9 @@ const TransactionList = () => {
     } catch (error) {
       showAlert('Error al exportar los datos', 'error');
     }
-  };
+  }, [transactions, showAlert]);
 
-  const handleImport = async (event) => {
+  const handleImport = useCallback(async (event) => {
     const file = event.target.files[0];
     if (!file) return;
 
@@ -51,7 +51,10 @@ const TransactionList = () => {
     
     // Reset file input
     event.target.value = '';
-  };
+  }, [importTransactions, showAlert]);
+
+  // Memoize filtered transactions to prevent unnecessary re-renders
+  const memoizedTransactions = useMemo(() => filteredTransactions, [filteredTransactions]);
 
   return (
     <section 
@@ -99,7 +102,7 @@ const TransactionList = () => {
       </div>
       
       <div className="transactions-list">
-        {filteredTransactions.length === 0 ? (
+        {memoizedTransactions.length === 0 ? (
           <div className="no-transactions" role="status" aria-live="polite">
             <Receipt size={64} aria-hidden="true" />
             <p>No hay transacciones registradas</p>
@@ -111,7 +114,7 @@ const TransactionList = () => {
             role="list"
             aria-label="Lista de transacciones"
           >
-            {filteredTransactions.map((transaction) => (
+            {memoizedTransactions.map((transaction) => (
               <TransactionItem 
                 key={transaction.id} 
                 transaction={transaction} 
@@ -122,7 +125,9 @@ const TransactionList = () => {
       </div>
     </section>
   );
-};
+});
+
+TransactionList.displayName = 'TransactionList';
 
 export default TransactionList;
 

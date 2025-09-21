@@ -72,3 +72,6 @@ backup/
 # Temporary files
 *.tmp
 *.temp
+
+# Duplicate project directory
+planificfinan/

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useReducer, useEffect, useMemo, ReactNode } from 'react';
 import { 
   saveTransactions, 
   loadTransactions, 
@@ -6,6 +6,7 @@ import {
   loadCurrency 
 } from '../utils/storage';
 import { generateId, validateTransaction } from '../utils/helpers';
+import { validateSecureTransaction, sanitizeTransaction, checkRateLimit } from '../utils/security';
 import { 
   FinanceState, 
   FinanceContextType, 
@@ -161,7 +162,25 @@ export const FinanceProvider = ({ children }: { children: ReactNode }) => {
 
   // Action creators
   const addTransaction = (transactionData: Omit<Transaction, 'id' | 'timestamp'>): boolean => {
-    const validation = validateTransaction(transactionData);
+    // Rate limiting check
+    if (!checkRateLimit('add_transaction', 'user')) {
+      showAlert('Demasiadas transacciones. Espera un momento antes de agregar otra.', 'warning');
+      return false;
+    }
+
+    // Sanitize input data
+    const sanitizedData = sanitizeTransaction(transactionData);
+    
+    // Enhanced security validation
+    const securityValidation = validateSecureTransaction(sanitizedData);
+    if (!securityValidation.isValid) {
+      const errorMessage = Object.values(securityValidation.errors)[0];
+      showAlert(`Error de validación: ${errorMessage}`, 'error');
+      return false;
+    }
+
+    // Original validation for business logic
+    const validation = validateTransaction(sanitizedData);
     if (!validation.isValid) {
       const errorMessage = Object.values(validation.errors)[0];
       showAlert(errorMessage, 'error');
@@ -170,10 +189,10 @@ export const FinanceProvider = ({ children }: { children: ReactNode }) => {
 
     const transaction = {
       id: generateId(),
-      ...transactionData,
-      amount: transactionData.type === 'expense' 
-        ? -Math.abs(transactionData.amount) 
-        : Math.abs(transactionData.amount),
+      ...sanitizedData,
+      amount: sanitizedData.type === 'expense' 
+        ? -Math.abs(sanitizedData.amount) 
+        : Math.abs(sanitizedData.amount),
       timestamp: new Date().getTime()
     };
 
@@ -219,8 +238,8 @@ export const FinanceProvider = ({ children }: { children: ReactNode }) => {
     showAlert('Datos importados exitosamente', 'success');
   };
 
-  // Computed values
-  const getFilteredTransactions = (): Transaction[] => {
+  // Computed values with memoization
+  const getFilteredTransactions = useMemo((): Transaction[] => {
     let filtered = [...state.transactions];
 
     // Apply type filter
@@ -243,9 +262,9 @@ export const FinanceProvider = ({ children }: { children: ReactNode }) => {
     }
 
     return filtered;
-  };
+  }, [state.transactions, state.filters]);
 
-  const getFinancialSummary = () => {
+  const getFinancialSummary = useMemo(() => {
     const totalIncome = state.transactions
       .filter(t => t.type === 'income')
       .reduce((sum, t) => sum + t.amount, 0);
@@ -256,16 +275,81 @@ export const FinanceProvider = ({ children }: { children: ReactNode }) => {
 
     const balance = totalIncome - totalExpense;
 
+    // Advanced metrics
+    const savingsRate = totalIncome > 0 ? ((totalIncome - totalExpense) / totalIncome) * 100 : 0;
+    const expenseRatio = totalIncome > 0 ? (totalExpense / totalIncome) * 100 : 0;
+    const transactionCount = state.transactions.length;
+    const avgTransaction = transactionCount > 0 ? (totalIncome + totalExpense) / transactionCount : 0;
+
     return {
       totalIncome,
       totalExpense,
-      balance
+      balance,
+      savingsRate,
+      expenseRatio,
+      transactionCount,
+      avgTransaction
     };
-  };
+  }, [state.transactions]);
 
-  const getUniqueCategories = (): string[] => {
+  const getUniqueCategories = useMemo((): string[] => {
     return [...new Set(state.transactions.map(t => t.category))];
-  };
+  }, [state.transactions]);
+
+  // Advanced analytics with memoization
+  const getCategoryAnalysis = useMemo(() => {
+    const categoryData: { [key: string]: { income: number; expense: number; count: number } } = {};
+
+    state.transactions.forEach(transaction => {
+      if (!categoryData[transaction.category]) {
+        categoryData[transaction.category] = { income: 0, expense: 0, count: 0 };
+      }
+      
+      categoryData[transaction.category].count++;
+      
+      if (transaction.type === 'income') {
+        categoryData[transaction.category].income += transaction.amount;
+      } else {
+        categoryData[transaction.category].expense += transaction.amount;
+      }
+    });
+
+    return Object.entries(categoryData).map(([category, data]) => ({
+      category,
+      income: data.income,
+      expense: data.expense,
+      total: data.income + data.expense,
+      count: data.count,
+      avgAmount: data.count > 0 ? (data.income + data.expense) / data.count : 0
+    }));
+  }, [state.transactions]);
+
+  const getMonthlyTrends = useMemo(() => {
+    const monthlyData: { [key: string]: { income: number; expense: number; balance: number } } = {};
+
+    state.transactions.forEach(transaction => {
+      const monthKey = transaction.date.substring(0, 7); // YYYY-MM
+      
+      if (!monthlyData[monthKey]) {
+        monthlyData[monthKey] = { income: 0, expense: 0, balance: 0 };
+      }
+      
+      if (transaction.type === 'income') {
+        monthlyData[monthKey].income += transaction.amount;
+      } else {
+        monthlyData[monthKey].expense += transaction.amount;
+      }
+    });
+
+    return Object.entries(monthlyData)
+      .map(([month, data]) => ({
+        month,
+        income: data.income,
+        expense: data.expense,
+        balance: data.income - data.expense
+      }))
+      .sort((a, b) => a.month.localeCompare(b.month));
+  }, [state.transactions]);
 
   const value = {
     // State
@@ -281,10 +365,12 @@ export const FinanceProvider = ({ children }: { children: ReactNode }) => {
     showAlert,
     importTransactions,
     
-    // Computed values
-    filteredTransactions: getFilteredTransactions(),
-    financialSummary: getFinancialSummary(),
-    uniqueCategories: getUniqueCategories()
+    // Computed values (memoized)
+    filteredTransactions: getFilteredTransactions,
+    financialSummary: getFinancialSummary,
+    uniqueCategories: getUniqueCategories,
+    categoryAnalysis: getCategoryAnalysis,
+    monthlyTrends: getMonthlyTrends
   };
 
   return (

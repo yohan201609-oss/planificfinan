@@ -1,0 +1,373 @@
+/* Financial Insights Styles */
+.financial-insights {
+  padding: 2rem;
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  margin: 2rem 0;
+}
+
+.insights-header {
+  margin-bottom: 2rem;
+}
+
+.insights-header h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+}
+
+.insights-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.insight-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--gray-200);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.insight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.insight-card.positive::before {
+  background: var(--success-color);
+}
+
+.insight-card.warning::before {
+  background: var(--warning-color);
+}
+
+.insight-card.info::before {
+  background: var(--info-color);
+}
+
+.insight-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.insight-card.positive:hover {
+  border-color: var(--success-color);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15);
+}
+
+.insight-card.warning:hover {
+  border-color: var(--warning-color);
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.15);
+}
+
+.insight-card.info:hover {
+  border-color: var(--info-color);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+}
+
+.insight-header {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.insight-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.insight-card.positive .insight-icon {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--success-color);
+}
+
+.insight-card.warning .insight-icon {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--warning-color);
+}
+
+.insight-card.info .insight-icon {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--info-color);
+}
+
+.insight-content {
+  flex: 1;
+}
+
+.insight-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
+}
+
+.insight-message {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.insight-value {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: var(--gray-50);
+  border-radius: 8px;
+}
+
+.value-number {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.value-category {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  background: var(--gray-200);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.insight-timestamp {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.insight-timestamp svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Empty State */
+.empty-insights {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: var(--text-secondary);
+}
+
+.empty-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.empty-insights h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.empty-insights p {
+  font-size: 0.875rem;
+  margin: 0;
+  max-width: 400px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* Insights Summary */
+.insights-summary {
+  border-top: 1px solid var(--gray-200);
+  padding-top: 1.5rem;
+}
+
+.summary-stats {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+}
+
+.stat-icon.positive {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--success-color);
+}
+
+.stat-icon.warning {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--warning-color);
+}
+
+.stat-icon.info {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--info-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .financial-insights {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+
+  .insights-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .insight-card {
+    padding: 1rem;
+  }
+
+  .insight-header {
+    gap: 0.75rem;
+  }
+
+  .insight-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .insight-title {
+    font-size: 0.9rem;
+  }
+
+  .insight-message {
+    font-size: 0.8rem;
+  }
+
+  .summary-stats {
+    gap: 1rem;
+  }
+
+  .stat-item {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .insight-value {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .value-number {
+    font-size: 1.1rem;
+  }
+}
+
+/* Animation Classes */
+.insight-card {
+  animation: slideInLeft 0.5s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .financial-insights {
+    background: var(--dark-bg);
+    border: 1px solid var(--dark-border);
+  }
+
+  .insight-card {
+    background: var(--dark-surface);
+    border-color: var(--dark-border);
+  }
+
+  .insight-title {
+    color: var(--dark-text-primary);
+  }
+
+  .insight-message {
+    color: var(--dark-text-secondary);
+  }
+
+  .insight-value {
+    background: var(--dark-surface);
+  }
+
+  .value-number {
+    color: var(--dark-text-primary);
+  }
+
+  .value-category {
+    background: var(--dark-surface);
+    color: var(--dark-text-secondary);
+  }
+
+  .insight-timestamp {
+    color: var(--dark-text-secondary);
+  }
+
+  .empty-insights h3 {
+    color: var(--dark-text-primary);
+  }
+
+  .empty-insights p {
+    color: var(--dark-text-secondary);
+  }
+
+  .insights-summary {
+    border-color: var(--dark-border);
+  }
+
+  .stat-item {
+    color: var(--dark-text-secondary);
+  }
+}

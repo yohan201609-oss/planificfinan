@@ -1,0 +1,338 @@
+/* Advanced Charts Styles */
+.advanced-charts {
+  padding: 2rem;
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  margin: 2rem 0;
+}
+
+.charts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.charts-header h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.chart-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.chart-type-selector {
+  display: flex;
+  background: var(--gray-100);
+  border-radius: 12px;
+  padding: 4px;
+  gap: 4px;
+}
+
+.chart-type-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.chart-type-btn:hover {
+  background: var(--gray-200);
+  color: var(--text-primary);
+}
+
+.chart-type-btn.active {
+  background: var(--primary-blue);
+  color: white;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.3);
+}
+
+.chart-type-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.charts-content {
+  margin-bottom: 2rem;
+}
+
+.chart-container {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--gray-200);
+}
+
+.chart-header {
+  margin-bottom: 1.5rem;
+}
+
+.chart-header h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.chart-header p {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* Tooltip Styles */
+.advanced-chart-tooltip {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: var(--shadow-lg);
+  font-size: 0.875rem;
+}
+
+.tooltip-label {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.advanced-chart-tooltip p {
+  margin: 0.25rem 0;
+  color: var(--text-secondary);
+}
+
+/* Heatmap Styles */
+.heatmap-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  gap: 2px;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.heatmap-day {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.heatmap-day:hover {
+  transform: scale(1.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.legend-gradient {
+  width: 60px;
+  height: 12px;
+  background: linear-gradient(to right, rgba(37, 99, 235, 0.3), rgba(37, 99, 235, 1));
+  border-radius: 2px;
+}
+
+/* Advanced Metrics */
+.advanced-metrics {
+  margin-top: 2rem;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.metric-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--gray-50);
+  border-radius: 12px;
+  border: 1px solid var(--gray-200);
+  transition: all 0.2s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.metric-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--primary-blue);
+  color: white;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.metric-content h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.25rem 0;
+}
+
+.metric-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.25rem 0;
+}
+
+.metric-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .advanced-charts {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+
+  .charts-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .chart-type-selector {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .chart-type-btn {
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .heatmap-grid {
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .heatmap-day {
+    width: 16px;
+    height: 16px;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-card {
+    padding: 1rem;
+  }
+
+  .metric-icon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-type-btn {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .chart-type-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Animation Classes */
+.chart-container {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .advanced-charts {
+    background: var(--dark-bg);
+    border: 1px solid var(--dark-border);
+  }
+
+  .chart-container {
+    background: var(--dark-bg);
+    border-color: var(--dark-border);
+  }
+
+  .chart-type-selector {
+    background: var(--dark-surface);
+  }
+
+  .chart-type-btn {
+    color: var(--dark-text-secondary);
+  }
+
+  .chart-type-btn:hover {
+    background: var(--dark-surface);
+    color: var(--dark-text-primary);
+  }
+
+  .metric-card {
+    background: var(--dark-surface);
+    border-color: var(--dark-border);
+  }
+
+  .advanced-chart-tooltip {
+    background: var(--dark-bg);
+    border-color: var(--dark-border);
+    color: var(--dark-text-primary);
+  }
+}

@@ -11,8 +11,11 @@ import PWAStatus from './PWAStatus';
 import CloudSyncPanel from './CloudSyncPanel';
 import CloudConfigModal from './CloudConfigModal';
 import FinancialDashboard from './FinancialDashboard';
+import AdvancedCharts from './AdvancedCharts';
+import FinancialInsights from './FinancialInsights';
 import BudgetManager from './BudgetManager';
 import SettingsPanel from './SettingsPanel';
+import CustomizableDashboard from './CustomizableDashboard';
 import { useFinance } from '../context/FinanceContext';
 import './FinanceDashboard.css';
 
@@ -28,6 +31,7 @@ const FinanceDashboard: React.FC = React.memo(() => {
   const [showCloudConfig, setShowCloudConfig] = useState(false);
   const [cloudConfig, setCloudConfig] = useState<CloudConfig | null>(null);
   const [showSettings, setShowSettings] = useState(false);
+  const [useCustomizableDashboard, setUseCustomizableDashboard] = useState(false);
 
   // Load cloud configuration on mount
   useEffect(() => {
@@ -66,6 +70,17 @@ const FinanceDashboard: React.FC = React.memo(() => {
         
         <div className="header-actions">
           <motion.button
+            className="action-btn dashboard-toggle"
+            onClick={() => setUseCustomizableDashboard(!useCustomizableDashboard)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            title={useCustomizableDashboard ? "Vista clásica" : "Dashboard personalizable"}
+          >
+            <Settings size={20} />
+            <span>{useCustomizableDashboard ? "Clásica" : "Personalizable"}</span>
+          </motion.button>
+
+          <motion.button
             className="action-btn cloud-btn"
             onClick={() => setShowCloudConfig(true)}
             whileHover={{ scale: 1.05 }}
@@ -78,6 +93,7 @@ const FinanceDashboard: React.FC = React.memo(() => {
           
           <motion.button
             className="action-btn settings-btn"
+            onClick={() => setShowSettings(true)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             title="Configuración"
@@ -89,50 +105,60 @@ const FinanceDashboard: React.FC = React.memo(() => {
       </div>
 
       <main id="main-content" role="main">
-        <div className="dashboard-header">
-          <h1>Dashboard Financiero</h1>
-          <motion.button
-            className="settings-btn"
-            onClick={() => setShowSettings(true)}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Settings size={20} />
-            Configuración
-          </motion.button>
-        </div>
+        {useCustomizableDashboard ? (
+          <CustomizableDashboard />
+        ) : (
+          <>
+            <div className="dashboard-header">
+              <h1>Dashboard Financiero</h1>
+              <motion.button
+                className="settings-btn"
+                onClick={() => setShowSettings(true)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Settings size={20} />
+                Configuración
+              </motion.button>
+            </div>
 
-        <motion.div
-          className="dashboard-content"
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-        >
-          <BalanceCard />
-          
-          <FinancialDashboard />
-          
-          <BudgetManager />
-          
-          <AnimatedForm />
-          
-          <TransactionFilters />
-          
-          {cloudConfig && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3, duration: 0.4 }}
+              className="dashboard-content"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
             >
-              <CloudSyncPanel 
-                config={cloudConfig}
-                onTransactionsUpdate={handleTransactionsUpdate}
-              />
+              <BalanceCard />
+              
+              <FinancialDashboard />
+              
+              <AdvancedCharts />
+              
+              <FinancialInsights />
+              
+              <BudgetManager />
+              
+              <AnimatedForm />
+              
+              <TransactionFilters />
+              
+              {cloudConfig && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.3, duration: 0.4 }}
+                >
+                  <CloudSyncPanel 
+                    config={cloudConfig}
+                    onTransactionsUpdate={handleTransactionsUpdate}
+                  />
+                </motion.div>
+              )}
+              
+              <TransactionList />
             </motion.div>
-          )}
-          
-          <TransactionList />
-        </motion.div>
+          </>
+        )}
       </main>
 
       <AnimatedAlert 

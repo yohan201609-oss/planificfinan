@@ -3,7 +3,7 @@
 # Fecha: $(Get-Date -Format "yyyy-MM-dd")
 
 param(
-    [switch]$AbrirNavegador = $true,
+    [switch]$AbrirNavegador,
     [string]$Puerto = "auto"
 )
 
@@ -38,6 +38,7 @@ function Test-Port {
 Clear-Host
 Write-Host "=" * 50 -ForegroundColor Cyan
 Write-Host "  $AppName" -ForegroundColor Yellow
+Write-Host "  $AppDescription" -ForegroundColor Gray
 Write-Host "=" * 50 -ForegroundColor Cyan
 Write-Host ""
 Write-ColorMessage "🚀 Iniciando servidor de desarrollo..." "Green"
@@ -109,7 +110,8 @@ Write-Host ""
 Write-Host "=" * 50 -ForegroundColor Cyan
 
 # Abrir navegador automáticamente después de un momento
-if ($AbrirNavegador) {
+# Por defecto, abrir el navegador si no se especifica lo contrario
+if ($AbrirNavegador -or (-not $PSBoundParameters.ContainsKey('AbrirNavegador'))) {
     Start-Job -ScriptBlock {
         Start-Sleep 3
         Start-Process "http://localhost:3000"

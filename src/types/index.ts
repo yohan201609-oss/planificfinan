@@ -14,6 +14,10 @@ export interface FinancialSummary {
   totalIncome: number;
   totalExpense: number;
   balance: number;
+  savingsRate: number;
+  expenseRatio: number;
+  transactionCount: number;
+  avgTransaction: number;
 }
 
 export interface Filters {
@@ -48,6 +52,8 @@ export interface FinanceContextType extends FinanceState {
   filteredTransactions: Transaction[];
   financialSummary: FinancialSummary;
   uniqueCategories: string[];
+  categoryAnalysis: CategoryAnalysis[];
+  monthlyTrends: MonthlyTrend[];
 }
 
 export interface CurrencyConfig {
@@ -123,6 +129,32 @@ export interface PeriodStats {
   balance: number;
   count: number;
   period: Period;
+}
+
+export interface CategoryAnalysis {
+  category: string;
+  income: number;
+  expense: number;
+  total: number;
+  count: number;
+  avgAmount: number;
+}
+
+export interface MonthlyTrend {
+  month: string;
+  income: number;
+  expense: number;
+  balance: number;
+}
+
+export interface FinancialInsight {
+  id: string;
+  type: 'positive' | 'warning' | 'info';
+  title: string;
+  message: string;
+  value?: number;
+  category?: string;
+  timestamp: number;
 }
 
 // Tipos para el contexto de finanzas

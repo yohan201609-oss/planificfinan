@@ -178,8 +178,6 @@ const TransactionForm: React.FC = React.memo(() => {
       </form>
     </section>
   );
-};
-
 });
 
 TransactionForm.displayName = 'TransactionForm';

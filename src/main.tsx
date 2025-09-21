@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App-basic.jsx'
+import App from './App.tsx'
 
 // Forzar actualización del Service Worker - VERSIÓN 2.0
 if ('serviceWorker' in navigator) {

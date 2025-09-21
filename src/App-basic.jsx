@@ -122,6 +122,21 @@ const App = () => {
         margin: '0 auto',
         padding: '20px'
       }}>
+        {/* Banner de Actualización */}
+        <div style={{
+          background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+          color: 'white',
+          padding: '15px',
+          borderRadius: '8px',
+          marginBottom: '20px',
+          textAlign: 'center',
+          fontWeight: '600',
+          fontSize: '1.1rem',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+        }}>
+          🎉 ¡ACTUALIZACIÓN EXITOSA! - Los cambios se han aplicado correctamente - v2.0
+        </div>
+
         {/* Header */}
         <header style={{
           marginBottom: '40px',
@@ -145,7 +160,7 @@ const App = () => {
                 margin: '0 0 10px 0',
                 textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
               }}>
-                💰 Finanzas Personales
+                🚀 NUEVA VERSIÓN - Finanzas Personales v2.0
               </h1>
               <p style={{
                 fontSize: '1.1rem',
@@ -153,7 +168,7 @@ const App = () => {
                 fontWeight: '300',
                 margin: '0'
               }}>
-                Gestiona tus ingresos y gastos de manera simple
+                ✅ ACTUALIZACIÓN EXITOSA - Gestiona tus finanzas con nuevas características
               </p>
             </div>
             
@@ -704,11 +719,15 @@ const App = () => {
           textAlign: 'center',
           marginTop: '40px',
           padding: '20px',
-          background: 'rgba(255, 255, 255, 0.8)',
-          borderRadius: '12px'
+          background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+          borderRadius: '12px',
+          color: 'white'
         }}>
-          <p style={{ color: '#6b7280', margin: '0' }}>
-            🎉 ¡Aplicación React de Finanzas Personales funcionando correctamente!
+          <p style={{ margin: '0', fontSize: '1.1rem', fontWeight: '600' }}>
+            🚀 ¡NUEVA VERSIÓN v2.0 DESPLEGADA EXITOSAMENTE! - Los cambios están funcionando correctamente
+          </p>
+          <p style={{ margin: '10px 0 0 0', fontSize: '0.9rem', opacity: '0.9' }}>
+            Timestamp: {new Date().toLocaleString()}
           </p>
         </div>
       </div>

@@ -1,5 +1,1 @@
-# Netlify redirects file
-# Para aplicaciones SPA (Single Page Application)
-
-# Redirigir todas las rutas a index.html para que React Router funcione
 /*    /index.html   200

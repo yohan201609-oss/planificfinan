@@ -57,9 +57,9 @@ export default defineConfig({
           vendor: ['react', 'react-dom'],
           icons: ['lucide-react']
         },
-        chunkFileNames: 'assets/js/[name]-[hash]-[timestamp].js',
-        entryFileNames: 'assets/js/[name]-[hash]-[timestamp].js',
-        assetFileNames: 'assets/[ext]/[name]-[hash]-[timestamp].[ext]'
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
       }
     },
     // Optimizaciones adicionales

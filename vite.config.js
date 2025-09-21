@@ -57,15 +57,17 @@ export default defineConfig({
           vendor: ['react', 'react-dom'],
           icons: ['lucide-react']
         },
-        chunkFileNames: 'assets/js/[name]-[hash].js',
-        entryFileNames: 'assets/js/[name]-[hash].js',
-        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
+        chunkFileNames: 'assets/js/[name]-[hash]-[timestamp].js',
+        entryFileNames: 'assets/js/[name]-[hash]-[timestamp].js',
+        assetFileNames: 'assets/[ext]/[name]-[hash]-[timestamp].[ext]'
       }
     },
     // Optimizaciones adicionales
     target: 'es2015',
     cssCodeSplit: true,
-    reportCompressedSize: false
+    reportCompressedSize: false,
+    // Forzar regeneración de archivos
+    emptyOutDir: true
   },
   preview: {
     port: 4173,

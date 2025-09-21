@@ -1,0 +1,97 @@
+@import './styles/dark-mode.css';
+
+.app {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--very-light-blue) 0%, var(--light-blue) 100%);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus visible for better accessibility */
+.btn-add:focus-visible,
+.btn-clear:focus-visible,
+.btn-action:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
+/* Loading state (if needed for future enhancements) */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  color: var(--text-secondary);
+}
+
+/* Print styles */
+@media print {
+  .app-header,
+  .transaction-form-section,
+  .filters-section,
+  .header-actions,
+  .delete-btn,
+  .alert {
+    display: none !important;
+  }
+  
+  .container {
+    max-width: none;
+    padding: 0;
+  }
+  
+  .transactions-section {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+  
+  .transaction-item {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    break-inside: avoid;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .summary-card,
+  .transaction-form-section,
+  .filters-section,
+  .transactions-section {
+    border: 2px solid var(--text-primary);
+  }
+}
+
+/* Dark mode support (future enhancement) */
+@media (prefers-color-scheme: dark) {
+  /* Could add dark mode variables here if desired */
+}
+
+
+

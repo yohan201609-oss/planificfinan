@@ -1,0 +1,128 @@
+.transactions-section {
+  background: var(--white);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  border: 1px solid var(--light-blue);
+}
+
+.transactions-header {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--navy-blue) 100%);
+  padding: 25px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--white);
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.transactions-header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-action {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--white);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.btn-action:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-action:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-clear:hover:not(:disabled) {
+  background: var(--danger-color);
+  border-color: var(--danger-color);
+}
+
+.btn-export:hover:not(:disabled) {
+  background: var(--success-color);
+  border-color: var(--success-color);
+}
+
+.btn-import:hover {
+  background: var(--warning-color);
+  border-color: var(--warning-color);
+}
+
+.transactions-list {
+  padding: 30px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.no-transactions {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-light);
+}
+
+.no-transactions svg {
+  margin-bottom: 20px;
+  color: var(--secondary-blue);
+  opacity: 0.5;
+}
+
+.no-transactions p {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.no-transactions p:first-of-type {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.transactions-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+@media (max-width: 768px) {
+  .transactions-header {
+    padding: 20px;
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .header-actions {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .btn-action {
+    flex: 1;
+    justify-content: center;
+    min-width: auto;
+  }
+}
+
+
+

@@ -1,0 +1,38 @@
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--primary-blue);
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  z-index: 1000;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 6px;
+  outline: 2px solid var(--white);
+  outline-offset: 2px;
+}
+
+.skip-link-focused {
+  top: 6px;
+  outline: 2px solid var(--white);
+  outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .skip-link {
+    border: 2px solid var(--white);
+  }
+  
+  .skip-link:focus,
+  .skip-link-focused {
+    outline: 3px solid var(--white);
+  }
+}

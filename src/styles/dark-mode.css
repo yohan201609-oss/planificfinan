@@ -1,0 +1,450 @@
+/* Dark Mode Styles */
+.dark-mode {
+  --white: #0f172a;
+  --gray-50: #1e293b;
+  --gray-100: #334155;
+  --gray-200: #475569;
+  --gray-300: #64748b;
+  --gray-400: #94a3b8;
+  --gray-500: #cbd5e1;
+  --gray-600: #e2e8f0;
+  --gray-700: #f1f5f9;
+  --gray-800: #f8fafc;
+  --gray-900: #ffffff;
+  
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  
+  --background-color: #0f172a;
+  --surface-color: #1e293b;
+  --border-color: #334155;
+  
+  --light-blue: #334155;
+  --light-blue-hover: #475569;
+  
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+  --info-color: #3b82f6;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+}
+
+/* Dark mode specific adjustments */
+.dark-mode .app-header {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border-bottom-color: #475569;
+}
+
+.dark-mode .balance-card {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border-color: #475569;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .transaction-form-section,
+.dark-mode .transactions-section,
+.dark-mode .filters-section,
+.dark-mode .financial-dashboard,
+.dark-mode .budget-manager {
+  background: #1e293b;
+  border-color: #475569;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .form-group input,
+.dark-mode .form-group select,
+.dark-mode .form-group textarea {
+  background: #334155;
+  border-color: #475569;
+  color: #f1f5f9;
+}
+
+.dark-mode .form-group input:focus,
+.dark-mode .form-group select:focus,
+.dark-mode .form-group textarea:focus {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.dark-mode .form-group input::placeholder,
+.dark-mode .form-group select::placeholder {
+  color: #94a3b8;
+}
+
+.dark-mode .btn-primary {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+  color: white;
+  border-color: var(--primary-blue);
+}
+
+.dark-mode .btn-primary:hover {
+  background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--dark-blue) 100%);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+
+.dark-mode .btn-secondary {
+  background: #334155;
+  color: #f1f5f9;
+  border-color: #475569;
+}
+
+.dark-mode .btn-secondary:hover {
+  background: #475569;
+  border-color: #64748b;
+}
+
+.dark-mode .btn-outline {
+  background: transparent;
+  color: var(--primary-blue);
+  border-color: var(--primary-blue);
+}
+
+.dark-mode .btn-outline:hover {
+  background: var(--primary-blue);
+  color: white;
+}
+
+.dark-mode .transaction-item {
+  background: #334155;
+  border-color: #475569;
+  color: #f1f5f9;
+}
+
+.dark-mode .transaction-item:hover {
+  background: #475569;
+  border-color: #64748b;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .metric-card,
+.dark-mode .chart-card,
+.dark-mode .budget-card,
+.dark-mode .goal-card {
+  background: #334155;
+  border-color: #475569;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .metric-card:hover,
+.dark-mode .chart-card:hover,
+.dark-mode .budget-card:hover,
+.dark-mode .goal-card:hover {
+  border-color: var(--primary-blue);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.dark-mode .modal-overlay {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.dark-mode .modal-content {
+  background: #1e293b;
+  border-color: #475569;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.8);
+}
+
+.dark-mode .modal-header {
+  border-bottom-color: #475569;
+  background: linear-gradient(135deg, #334155 0%, #475569 100%);
+}
+
+.dark-mode .modal-footer {
+  border-top-color: #475569;
+  background: #334155;
+}
+
+.dark-mode .alert {
+  background: #334155;
+  border-color: #475569;
+  color: #f1f5f9;
+}
+
+.dark-mode .alert.success {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.dark-mode .alert.error {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.dark-mode .alert.warning {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: #f59e0b;
+  color: #f59e0b;
+}
+
+.dark-mode .alert.info {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.dark-mode .pwa-status-message {
+  background: #334155;
+  border: 1px solid #475569;
+  color: #f1f5f9;
+}
+
+.dark-mode .pwa-status-message.offline {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+}
+
+.dark-mode .pwa-status-message.online {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: #10b981;
+}
+
+.dark-mode .pwa-status-message.install-prompt {
+  background: rgba(37, 99, 235, 0.2);
+  border-color: var(--primary-blue);
+}
+
+.dark-mode .pwa-status-message.update-prompt {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: #f59e0b;
+}
+
+/* Dark mode for charts */
+.dark-mode .recharts-cartesian-axis-tick-value {
+  fill: #cbd5e1 !important;
+}
+
+.dark-mode .recharts-text {
+  fill: #cbd5e1 !important;
+}
+
+.dark-mode .recharts-cartesian-grid-horizontal line,
+.dark-mode .recharts-cartesian-grid-vertical line {
+  stroke: #475569 !important;
+}
+
+.dark-mode .recharts-tooltip-wrapper {
+  background: #1e293b !important;
+  border: 1px solid #475569 !important;
+  color: #f1f5f9 !important;
+}
+
+.dark-mode .recharts-tooltip-label {
+  color: #f1f5f9 !important;
+}
+
+.dark-mode .recharts-legend-item-text {
+  color: #cbd5e1 !important;
+}
+
+/* Dark mode for progress bars */
+.dark-mode .progress-bar {
+  background: #475569;
+}
+
+.dark-mode .progress-fill {
+  background: var(--primary-blue);
+}
+
+/* Dark mode for toggles */
+.dark-mode .toggle-switch .slider {
+  background-color: #475569;
+}
+
+.dark-mode .toggle-switch input:checked + .slider {
+  background-color: var(--primary-blue);
+}
+
+.dark-mode .toggle-switch .slider:before {
+  background-color: #f1f5f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Dark mode for tabs */
+.dark-mode .tab {
+  color: #94a3b8;
+}
+
+.dark-mode .tab:hover {
+  color: #f1f5f9;
+  background: rgba(37, 99, 235, 0.1);
+}
+
+.dark-mode .tab.active {
+  color: var(--primary-blue);
+  background: rgba(37, 99, 235, 0.2);
+}
+
+/* Dark mode for color schemes */
+.dark-mode .color-scheme {
+  background: #334155;
+  border-color: #475569;
+}
+
+.dark-mode .color-scheme:hover {
+  border-color: var(--primary-blue);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+}
+
+.dark-mode .color-scheme.selected {
+  background: rgba(37, 99, 235, 0.1);
+}
+
+/* Dark mode for input fields */
+.dark-mode .color-input input[type="text"] {
+  background: #334155;
+  border-color: #475569;
+  color: #f1f5f9;
+}
+
+.dark-mode .color-input input[type="text"]:focus {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+/* Dark mode for buttons */
+.dark-mode .btn-test-connection,
+.dark-mode .btn-save-config,
+.dark-mode .btn-apply,
+.dark-mode .btn-clear,
+.dark-mode .btn-reset {
+  background: #334155;
+  color: #f1f5f9;
+  border-color: #475569;
+}
+
+.dark-mode .btn-test-connection:hover,
+.dark-mode .btn-save-config:hover,
+.dark-mode .btn-apply:hover,
+.dark-mode .btn-clear:hover,
+.dark-mode .btn-reset:hover {
+  background: #475569;
+  border-color: #64748b;
+}
+
+/* Dark mode for summary cards */
+.dark-mode .summary-card {
+  background: #334155;
+  border-color: #475569;
+}
+
+.dark-mode .summary-card:hover {
+  border-color: var(--primary-blue);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+}
+
+/* Dark mode for category items */
+.dark-mode .category-item {
+  background: #334155;
+  border-color: #475569;
+}
+
+.dark-mode .category-item:hover {
+  border-color: var(--primary-blue);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+}
+
+/* Dark mode for test notification buttons */
+.dark-mode .test-notification-btn {
+  background: #334155;
+  border-color: #475569;
+}
+
+.dark-mode .test-notification-btn:hover {
+  border-color: var(--primary-blue);
+  background: rgba(37, 99, 235, 0.05);
+}
+
+/* Dark mode for mode options */
+.dark-mode .mode-option {
+  background: #334155;
+  border-color: #475569;
+}
+
+.dark-mode .mode-option:hover {
+  border-color: var(--primary-blue);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+}
+
+.dark-mode .mode-option.selected {
+  background: rgba(37, 99, 235, 0.1);
+}
+
+/* Dark mode for empty states */
+.dark-mode .empty-state {
+  color: #94a3b8;
+}
+
+.dark-mode .empty-state p:first-of-type {
+  color: #cbd5e1;
+}
+
+/* Dark mode for skip link */
+.dark-mode .skip-link {
+  background: var(--primary-blue);
+  color: white;
+}
+
+.dark-mode .skip-link:focus {
+  outline-color: var(--primary-blue);
+}
+
+/* Dark mode for live region */
+.dark-mode .sr-only {
+  color: #f1f5f9;
+}
+
+/* Dark mode scrollbar */
+.dark-mode ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dark-mode ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Dark mode for selection */
+.dark-mode ::selection {
+  background: rgba(37, 99, 235, 0.3);
+  color: #f1f5f9;
+}
+
+/* Dark mode for focus outlines */
+.dark-mode *:focus {
+  outline-color: var(--primary-blue);
+}
+
+/* Dark mode for disabled elements */
+.dark-mode .btn:disabled,
+.dark-mode .form-group input:disabled,
+.dark-mode .form-group select:disabled {
+  background: #475569;
+  color: #64748b;
+  border-color: #64748b;
+  cursor: not-allowed;
+}
+
+/* Dark mode for error states */
+.dark-mode .error-message {
+  color: #fca5a5;
+}
+
+.dark-mode .form-group input.error,
+.dark-mode .form-group select.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
